@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from 'electron'
 import started from 'electron-squirrel-startup'
 
+import { updateElectronApp, UpdateSourceType } from 'update-electron-app'
+
 import { MainWindow } from '@/electron/window/MainWindow'
 
 import { ElectronIpcMain } from '@/electron/ipcMain/ElectronIPCMain'
@@ -9,6 +11,13 @@ import { ElectronIpcMain } from '@/electron/ipcMain/ElectronIPCMain'
 if (started) {
   app.quit()
 }
+
+updateElectronApp({
+  updateSource: {
+    type: UpdateSourceType.ElectronPublicUpdateService,
+    repo: 'rhy3h/electron-shadcn-vue'
+  }
+})
 
 const createWindow = () => {
   // Create the browser window.
